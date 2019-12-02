@@ -1,36 +1,16 @@
-ALTER TABLE `items` ADD COLUMN `limit` INT(11) NOT NULL;
+USE `essentialmode`;
 
-INSERT INTO `items` (`name`, `label`, `limit`) VALUES
-	('alive_chicken', 'Poulet vivant', 20),
-	('slaughtered_chicken', 'Poulet abattu', 20),
-	('packaged_chicken', 'Poulet en barquette', 100),
-	('fish', 'Poisson', 100),
-	('stone', 'Pierre', 7),
-	('washed_stone', 'Pierre Lavée', 7),
-	('copper', 'Cuivre', 56),
-	('iron', 'Fer', 42),
-	('gold', 'Or', 21),
-	('diamond', 'Diamant', 50),
-	('wood', 'Bois', 20),
-	('cutted_wood', 'Bois coupé', 20),
-	('packaged_plank', 'Paquet de planches', 100),
-	('petrol', 'Pétrole', 24),
-	('petrol_raffin', 'Pétrole Raffiné', 24),
-	('essence', 'Essence', 24),
-	('wool', 'Laine', 40),
-	('fabric', 'Tissu', 80),
-	('clothe', 'Vêtement', 40)
-;
-ALTER TABLE `users` ADD COLUMN `status` LONGTEXT NULL;
-INSERT INTO `items` (`name`, `label`, `limit`) VALUES
-	('bread', 'Pain', 10),
-	('water', 'Eau', 5)
-;
-CREATE TABLE `weashops` (
+CREATE TABLE `licenses` (
+	`type` varchar(60) NOT NULL,
+	`label` varchar(60) NOT NULL,
+
+	PRIMARY KEY (`type`)
+);
+
+CREATE TABLE `user_licenses` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`zone` varchar(255) NOT NULL,
-	`item` varchar(255) NOT NULL,
-	`price` int(11) NOT NULL,
+	`type` varchar(60) NOT NULL,
+	`owner` varchar(60) NOT NULL,
 
 	PRIMARY KEY (`id`)
 );
@@ -637,20 +617,7 @@ CREATE TABLE `characters` (
 
 	PRIMARY KEY (`id`)
 );
-CREATE TABLE `licenses` (
-	`type` varchar(60) NOT NULL,
-	`label` varchar(60) NOT NULL,
 
-	PRIMARY KEY (`type`)
-);
-
-CREATE TABLE `user_licenses` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`type` varchar(60) NOT NULL,
-	`owner` varchar(60) NOT NULL,
-
-	PRIMARY KEY (`id`)
-);
 INSERT INTO `addon_account` (name, label, shared) VALUES
 	('society_police', 'Police', 1)
 ;
